@@ -12,11 +12,17 @@ export default function Routes(){
       <Stack.Screen
         name="Home"
         component={Home}
+        options={{
+          headerShown: false
+        }}
       />
 
       <Stack.Screen
         name="Car"
         component={Car}
+        options={{
+          title: 'Carrinho'
+        }}
       />
     </Stack.Navigator>
   )
