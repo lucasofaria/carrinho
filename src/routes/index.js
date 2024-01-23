@@ -21,7 +21,7 @@ export default function Routes(){
         name="Car"
         component={Car}
         options={{
-          title: 'Carrinho'
+          title: 'Meu carrinho'
         }}
       />
     </Stack.Navigator>

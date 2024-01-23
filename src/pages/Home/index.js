@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
+
+import ListItems from '../../components/ListItems';
 
 export default function Home() {
   const [produtos, setProdutos] = useState([
@@ -39,18 +41,6 @@ export default function Home() {
     },
   ]);
 
-  const Item = ({name, price}) => (
-    <View style={styles.areaProdutos}>
-      <View>
-        <Text style={styles.textProduto}>{name}</Text>
-        <Text>R$ {price}</Text>
-      </View>
-
-      <TouchableOpacity style={styles.buttonAdd}>
-        <Text style={{fontSize: 20, fontWeight: 'bold', color:'#121212'}}>+</Text>
-      </TouchableOpacity>
-    </View>
-  );
 
   const navigation = useNavigation();
 
@@ -76,7 +66,7 @@ export default function Home() {
       <View style={{width: '90%'}}>
         <FlatList
           data={produtos}
-          renderItem={({item}) => <Item name={item.name} price={item.price}/>}
+          renderItem={({item}) => <ListItems data={item}/>}
           keyExtractor={item => item.id}
         />
       </View>  
@@ -114,28 +104,5 @@ const styles = StyleSheet.create({
   title:{
     fontSize: 25,
     fontWeight: 'bold'
-  },
-
-  areaProdutos:{
-    alignItems:'center',
-    justifyContent: 'space-between',
-    marginBottom: 15,
-    padding: 10,
-    borderWidth: 1,
-    flexDirection: 'row',
-    borderRadius: 6
-  },
-
-  textProduto:{
-    fontSize: 18,
-    fontWeight: 'bold'
-  },
-
-  buttonAdd:{
-    backgroundColor: '#588157',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 30,
-    height: 30
   }
 })

@@ -1,42 +1,51 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function ListItems() {
-  const [produto, setProduto] = useState([
-    {
-      id: 1,
-      name: "Coca-cola",
-      price: 9.50
-    },
-    {
-      id: 1,
-      name: "Arroz",
-      price: 17.99
-    },
-    {
-      id: 1,
-      name: "Feijão",
-      price: 4.99
-    },
-    {
-      id: 1,
-      name: "Água 500ml",
-      price: 1.99
-    },
-    {
-      id: 1,
-      name: "Café",
-      price: 7.99
-    },
-    {
-      id: 1,
-      name: "Nescal",
-      price: 5.99
-    },
-  ]);
+export default function ListItems(props) {
+  const [carList, setCarList] = useState('');
+
+  function addItem(){
+    return(
+      setCarList(props.data.id)
+    )
+  }
+
   return (
-    <View>
-      <Text>{produto.name}</Text>
+    <View style={styles.areaProdutos}>
+      <View>
+        <Text style={styles.textProduto}>{props.data.name}</Text>
+        <Text>R$ {props.data.price}</Text>
+      </View>
+  
+      <TouchableOpacity style={styles.buttonAdd} onPress={addItem}>
+        <Text style={{fontSize: 20, fontWeight: 'bold', color:'#121212'}}>+</Text>
+      </TouchableOpacity>
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  areaProdutos:{
+    alignItems:'center',
+    justifyContent: 'space-between',
+    marginBottom: 15,
+    padding: 10,
+    borderWidth: 1,
+    flexDirection: 'row',
+    borderRadius: 6
+  },
+
+  textProduto:{
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+
+  buttonAdd:{
+    backgroundColor: '#588157',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 30,
+    height: 30
+  }
+})
