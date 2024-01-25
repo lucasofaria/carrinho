@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function ListItems(props) {
-  const [carList, setCarList] = useState('');
-
-  function addItem(){
-    return(
-      setCarList(props.data.id)
-    )
-  }
+export default function ListItems(props, addToCart) {
 
   return (
     <View style={styles.areaProdutos}>
@@ -17,7 +10,7 @@ export default function ListItems(props) {
         <Text>R$ {props.data.price}</Text>
       </View>
   
-      <TouchableOpacity style={styles.buttonAdd} onPress={addItem}>
+      <TouchableOpacity style={styles.buttonAdd} onPress={addToCart}>
         <Text style={{fontSize: 20, fontWeight: 'bold', color:'#121212'}}>+</Text>
       </TouchableOpacity>
     </View>

@@ -2,7 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from "../pages/Home";
-import Car from "../pages/Car";
+import Cart from "../pages/Cart";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,8 +18,8 @@ export default function Routes(){
       />
 
       <Stack.Screen
-        name="Car"
-        component={Car}
+        name="Cart"
+        component={Cart}
         options={{
           title: 'Meu carrinho'
         }}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -7,7 +7,13 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import ListItems from '../../components/ListItems';
 
+import { CartContext } from '../../contexts/CartContexts'
+
 export default function Home() {
+  const { cart, addItemCart } = useContext(CartContext);
+  
+  const navigation = useNavigation();
+
   const [produtos, setProdutos] = useState([
     {
       id: 1,
@@ -41,10 +47,11 @@ export default function Home() {
     },
   ]);
 
+  function handleAdd(item){
+    addItemCart(item)
+  }
 
-  const navigation = useNavigation();
-
-  return (
+  return(
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Lista de produtos</Text>
@@ -54,11 +61,13 @@ export default function Home() {
             name='cart' 
             size={30} 
             style={{color: '#121212'}}
-            onPress={() => navigation.navigate('Car')} 
+            onPress={() => navigation.navigate('Cart')} 
           />
           
           <View style={styles.areaIndicator}>
-            <Text style={{fontWeight: 'bold', color: '#FFF'}}> 2 </Text>
+            <Text style={styles.textCart}>
+              {cart?.length} 
+            </Text>
           </View>
         </View>
       </View>
@@ -66,8 +75,8 @@ export default function Home() {
       <View style={{width: '90%'}}>
         <FlatList
           data={produtos}
-          renderItem={({item}) => <ListItems data={item}/>}
-          keyExtractor={item => item.id}
+          keyExtractor={item => String(item.id)}
+          renderItem={({item}) => <ListItems data={item} addToCart={() => handleAdd(item)} />}
         />
       </View>  
 
@@ -99,6 +108,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
     marginTop: 15
+  },
+
+  textCart:{
+    fontSize: 11,
+    color: '#FFF',
+    fontWeight: 'bold'
   },
 
   title:{
