@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function ListItems(props, addToCart) {
-
+export default function ListItems({data, addToCart}) {
   return (
     <View style={styles.areaProdutos}>
       <View>
-        <Text style={styles.textProduto}>{props.data.name}</Text>
-        <Text>R$ {props.data.price}</Text>
+        <Text style={styles.textProduto}>{data.name}</Text>
+        <Text>R$ {data.price}</Text>
       </View>
   
       <TouchableOpacity style={styles.buttonAdd} onPress={addToCart}>
