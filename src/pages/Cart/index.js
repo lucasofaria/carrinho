@@ -1,13 +1,33 @@
-import React, {useState} from 'react';
-import { View, Text, FlatList } from 'react-native';
-
+import { useContext } from 'react';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { CartContext } from '../../contexts/CartContexts';
+import ListCart from '../../components/ListCart';
 
 export default function Cart() {
-  return(
-    <View>
-      <Text>
-        Total: R$ 
-      </Text> 
+  const { cart, addItemCart } = useContext(CartContext);
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={cart}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => (
+          <ListCart
+            data={item}
+          />
+        )}
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    backgroundColor: '#FAFAFA',
+    paddingStart: 14,
+    paddingEnd: 14,
+    paddingTop: 14
+  }
+})
