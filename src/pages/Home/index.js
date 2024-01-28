@@ -64,7 +64,7 @@ export default function Home() {
             onPress={() => navigation.navigate('Cart')} 
           />
 
-          {cart?.length > 0 && (
+          {cart?.length >= 1 && (
             <View style={styles.areaIndicator}>
             <Text style={styles.textCart}>
               {cart?.length} 
