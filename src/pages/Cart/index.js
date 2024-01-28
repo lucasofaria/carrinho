@@ -4,7 +4,7 @@ import { CartContext } from '../../contexts/CartContexts';
 import ListCart from '../../components/ListCart';
 
 export default function Cart() {
-  const { cart, addItemCart } = useContext(CartContext);
+  const { cart, addItemCart, reduceItemCart } = useContext(CartContext);
 
   return (
     <View style={styles.container}>
@@ -12,9 +12,16 @@ export default function Cart() {
         data={cart}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => String(item.id)}
+        ListEmptyComponent={() => 
+          <View style={styles.alert}>
+            <Text style={styles.text }>Nenhum item adicionado no carrinho</Text>
+          </View>  
+        }
         renderItem={({ item }) => (
           <ListCart
             data={item}
+            addAmount={ () => addItemCart(item) }
+            reduceAmount={ () => reduceItemCart(item)}
           />
         )}
       />
@@ -29,5 +36,12 @@ const styles = StyleSheet.create({
     paddingStart: 14,
     paddingEnd: 14,
     paddingTop: 14
+  },
+  alert:{
+    alignItems: 'center',
+  },
+  text:{
+    fontSize: 18,
+    color: '#000'
   }
 })

@@ -30,11 +30,32 @@ function CartProvider({ children }){
     setCart(produtos => [...produtos, data])
   }
 
+  function reduceItemCart(produtos){
+    const indexItem = cart.findIndex(item => item.id === produtos.id)
+
+    if(cart[indexItem]?.amount > 1){
+      let cartList = cart;
+  
+      cartList[indexItem].amount = cartList[indexItem].amount - 1; // Diminuindo -1
+  
+      cartList[indexItem].total = cartList[indexItem].total - cartList[indexItem].price; // Recalculando o total
+    
+      setCart(cartList)
+      console.log(cartList)
+      return;
+    }
+
+    const removeItem = cart.filter(item => item.id !== produtos.id)
+    setCart(removeItem);
+    
+  }
+
   return(
     <CartContext.Provider
       value={{
         cart,
-        addItemCart
+        addItemCart,
+        reduceItemCart
       }}
     >
       {children}

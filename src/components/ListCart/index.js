@@ -1,8 +1,24 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function ListCart({ data }) {
+export default function ListCart({ data, addAmount, reduceAmount }) {
   const [ amount, setAmount ] = useState(data?.amount)
+
+  function handleIncrease(){
+    addAmount();
+    setAmount(item => item +1)
+  }
+
+  function handleReduce(){
+    reduceAmount();
+
+    if(amount === 0){
+      setAmount(0)
+      return;
+    }
+
+    setAmount(item => item -1)
+  }
 
   return (
     <View style={styles.container}>
@@ -12,14 +28,14 @@ export default function ListCart({ data }) {
       </View>
 
       <View style={styles.areaButtons}>
-        <TouchableOpacity style={styles.buttonAdd}>
-          <Text style={styles.textButton}>+</Text>
+        <TouchableOpacity style={styles.buttonAdd} onPress={handleReduce}>
+          <Text style={styles.textButton}>-</Text>
         </TouchableOpacity>
 
         <Text style={styles.amount}>{amount}</Text>
 
-        <TouchableOpacity style={styles.buttonAdd}>
-          <Text style={styles.textButton}>-</Text>
+        <TouchableOpacity style={styles.buttonAdd} onPress={handleIncrease}>
+          <Text style={styles.textButton}>+</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -58,11 +74,11 @@ const styles = StyleSheet.create({
   },
 
   buttonAdd:{
-    borderWidth: 1,
     padding: 5,
     paddingLeft: 10,
     paddingRight:10,
-    backgroundColor: '#168FFF' 
+    backgroundColor: '#168FFF',
+    borderRadius: 2 
   },
 
   textButton:{
