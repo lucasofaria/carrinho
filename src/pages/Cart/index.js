@@ -4,7 +4,7 @@ import { CartContext } from '../../contexts/CartContexts';
 import ListCart from '../../components/ListCart';
 
 export default function Cart() {
-  const { cart, addItemCart, reduceItemCart } = useContext(CartContext);
+  const { cart, addItemCart, reduceItemCart, total } = useContext(CartContext);
 
   return (
     <View style={styles.container}>
@@ -23,8 +23,14 @@ export default function Cart() {
             addAmount={ () => addItemCart(item) }
             reduceAmount={ () => reduceItemCart(item)}
           />
-        )}
+        )}  
       />
+
+      {cart?.length > 0 && (
+        <View style={styles.areaTotal}>
+          <Text style={styles.total}>Total R${total}</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -43,5 +49,15 @@ const styles = StyleSheet.create({
   text:{
     fontSize: 18,
     color: '#000'
+  },
+  areaTotal:{
+    justifyContent: 'center',
+    
+    marginBottom: 14,
+    marginTop: 14
+  },
+  total:{
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 })

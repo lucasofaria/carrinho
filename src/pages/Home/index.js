@@ -63,12 +63,15 @@ export default function Home() {
             style={{color: '#121212'}}
             onPress={() => navigation.navigate('Cart')} 
           />
-          
-          <View style={styles.areaIndicator}>
+
+          {cart?.length > 0 && (
+            <View style={styles.areaIndicator}>
             <Text style={styles.textCart}>
               {cart?.length} 
             </Text>
           </View>
+          )}
+          
         </View>
       </View>
 
