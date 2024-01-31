@@ -28,7 +28,8 @@ export default function Cart() {
 
       {cart?.length > 0 && (
         <View style={styles.areaTotal}>
-          <Text style={styles.total}>Total R${total}</Text>
+          <Text style={styles.SubTotal}>Sub-Total </Text>
+          <Text style={styles.valor}>R${total}</Text>
         </View>
       )}
     </View>
@@ -52,11 +53,14 @@ const styles = StyleSheet.create({
   },
   areaTotal:{
     justifyContent: 'center',
-    
+    flexDirection: 'row',
     marginBottom: 14,
     marginTop: 14
   },
-  total:{
+  SubTotal:{
+    fontSize: 18,
+  },
+  valor:{
     fontSize: 18,
     fontWeight: 'bold'
   }

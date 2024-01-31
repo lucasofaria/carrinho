@@ -45,6 +45,26 @@ export default function Home() {
       name: "Nescal",
       price: 5.99
     },
+    {
+      id: 7,
+      name: "Guaraná Kuat",
+      price: 4.99
+    },
+    {
+      id: 8,
+      name: "Mucilon",
+      price: 11.99
+    },
+    {
+      id: 9,
+      name: "Biscoito recheado",
+      price: 5.99
+    },
+    {
+      id: 10,
+      name: "Sorvete 5L",
+      price: 18.99
+    },
   ]);
 
   function handleAdd(item){
@@ -54,7 +74,7 @@ export default function Home() {
   return(
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Lista de produtos</Text>
+        <Text style={styles.title}>Kitanda da Dona Maria</Text>
 
         <View style={styles.areaIcon}>
           <Ionicons 
@@ -90,7 +110,8 @@ export default function Home() {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 5
   },
 
   header:{
@@ -99,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '95%',
     marginTop: 40,
-    marginBottom: 20
+    marginBottom: 15
   },
 
   areaIndicator:{
@@ -110,7 +131,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    marginTop: 15
+    marginTop: 15,
   },
 
   textCart:{

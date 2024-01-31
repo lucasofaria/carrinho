@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
   },
 
   areaButtons:{
-    flexDirection: 'row',
     marginTop: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    flexDirection: 'row'
   },
 
   amount:{
